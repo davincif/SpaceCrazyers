@@ -1,0 +1,68 @@
+{
+	"development": [
+		"dependencymanager",
+		"autopep8",
+		"toml",
+		"pycodestyle"
+	],
+	"production": [
+		"pygame",
+		"PyYAML"
+	],
+	"packs": {
+		"dependencymanager": {
+			"head": true,
+			"version": "1.0.0",
+			"requires": [],
+			"required-by": [],
+			"dev": true
+		},
+		"pygame": {
+			"head": true,
+			"version": "2.0.1",
+			"requires": [],
+			"required-by": [],
+			"dev": false
+		},
+		"autopep8": {
+			"head": true,
+			"version": "1.5.7",
+			"requires": [
+				"pycodestyle",
+				"toml"
+			],
+			"required-by": [],
+			"dev": true
+		},
+		"toml": {
+			"head": false,
+			"version": "0.10.2",
+			"requires": [],
+			"required-by": [
+				"autopep8"
+			],
+			"dev": true
+		},
+		"pycodestyle": {
+			"head": false,
+			"version": "2.7.0",
+			"requires": [],
+			"required-by": [
+				"autopep8"
+			],
+			"dev": true
+		},
+		"PyYAML": {
+			"head": true,
+			"version": "5.4.1",
+			"requires": [],
+			"required-by": [],
+			"dev": false
+		}
+	},
+	"pipdeps": [
+		"pip",
+		"setuptools",
+		"wheel"
+	]
+}

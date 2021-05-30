@@ -1,0 +1,12 @@
+background_color:
+    - 0
+    - 0
+    - 0
+fps: 60
+resolution:
+    - max
+    - max
+# custom:
+#     world_size:
+#         - 1
+#         - 1
