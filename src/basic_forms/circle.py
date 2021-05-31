@@ -27,5 +27,5 @@ class Circle(Node):
         else:
             return False
 
-    def draw(self, screen):
+    def how_to_draw_me(self, screen):
         pygame.draw.circle(screen, self.color, self.pos, self.radius)

@@ -40,6 +40,7 @@ a1 = Aircraft(
     color=(0, 150, 150),
     max_health=1000
 )
+a1.health -= 350
 
 play2 = Player(
     pos=(0, 0),
@@ -61,6 +62,7 @@ a2 = Aircraft(
     color=(200, 0, 100),
     max_health=1000
 )
+a2.health -= 150
 uni.add_planet(p1)
 uni.add_planet(p2)
 

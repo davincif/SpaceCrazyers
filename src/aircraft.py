@@ -16,7 +16,6 @@ class Aircraft(Triangle):
     health = 10
     swarm = 1
 
-    show_life_bar = True
     life_bar = None
 
     def __init__(
@@ -58,8 +57,11 @@ class Aircraft(Triangle):
             self.health = self.max_health
 
     # public methods
-    def draw(self, screen):
-        super().draw(screen)
+    def how_to_draw_me(self, screen):
+        super().how_to_draw_me(screen)
+        self.life_bar.how_to_draw_me(screen, self.health / self.max_health)
 
-        if self.show_life_bar:
-            self.life_bar.draw(screen, self.health / self.max_health)
+    def set_is_visible(self, value: bool):
+        print('set_is_visible', value)
+        super().set_is_visible(value)
+        self.life_bar.set_is_visible(value)

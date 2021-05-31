@@ -34,7 +34,7 @@ class Triangle(Node):
     def is_click(self, pos):
         return False
 
-    def draw(self, screen):
+    def how_to_draw_me(self, screen):
         pygame.draw.polygon(screen, self.color, self.triangle)
 
     # private methods
