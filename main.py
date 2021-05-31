@@ -63,19 +63,26 @@ a2 = Aircraft(
 uni.add_planet(p1)
 uni.add_planet(p2)
 
-while True:
+# main loop
+run = True
+while run:
     clock.tick(fps)
     screen.fill(bgc)
 
     for event in pygame.event.get():
         if event.type == QUIT:
-            exit()
-
-        if event.type >= CustomEvent.UNIVERSE_EVENT.value and event.type <= CustomEvent.UNIVERSE_EVENT_F.value:
+            run = False
+        elif event.type >= CustomEvent.UNIVERSE_EVENT.value and event.type <= CustomEvent.UNIVERSE_EVENT_F.value:
             uni.update(event.type)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            clicked = uni.click(event.pos)
 
     p1.draw(screen)
     a1.draw(screen)
     p2.draw(screen)
     a2.draw(screen)
     pygame.display.flip()
+
+# end game
+pygame.quit()
+exit()

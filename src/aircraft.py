@@ -10,7 +10,7 @@ from . import basic_forms
 
 class Aircraft():
     __triangle = None
-    __pos = (15, 15)
+    __pos = pygame.Vector2(15, 15)
 
     owner = None
     planet = None
@@ -47,7 +47,7 @@ class Aircraft():
             raise(TypeError('color must be a pygame.Color object'))
 
         # stting pos
-        self.__pos = pos
+        self.__pos = pygame.Vector2(pos[0], pos[1])
         self.__triangel = basic_forms.triangle(self.__pos, self.size)
 
         # setting ordinary variables
@@ -72,6 +72,10 @@ class Aircraft():
 
     @pos.setter
     def pos(self, value: tuple):
+        if not isinstance(value, pygame.Vector2):
+            value = pygame.Vector2(value[0], value[1])
+
+        self.__pos = value
         self.__triangel = basic_forms.triangle(self.__pos, self.size)
 
     # public methods

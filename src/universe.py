@@ -29,6 +29,16 @@ class Universe():
         self.planets.append(planet)
         return True
 
+    def click(self, pos):
+        clicked = None
+        for plan in self.planets:
+            if(plan.is_click(pos)):
+                clicked = plan
+                clicked.click()
+                break
+
+        return clicked
+
     def update(self, etype):
         if etype == CustomEvent.UNIVERSE_TICK.value:
             for plan in self.planets:
