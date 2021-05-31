@@ -7,6 +7,8 @@ import config
 from src.planet import Planet
 from src.player import Player
 from src.aircraft import Aircraft
+from src.events import CustomEvent
+from src.universe import Universe
 
 config.init()
 clock = pygame.time.Clock()
@@ -16,6 +18,7 @@ fps = config.confs['fps']
 bgc = config.confs['background_color']
 
 # test
+uni = Universe()
 play1 = Player(
     pos=(0, 0),
     name='Leo'
@@ -25,7 +28,8 @@ p1 = Planet(
     pos=(100, 100),
     name='xablau',
     color=(255, 0, 0),
-    max_health=1000
+    max_health=1000,
+    resource_gen_s=15,
 )
 a1 = Aircraft(
     onwer=play1,
@@ -45,7 +49,8 @@ p2 = Planet(
     pos=(850, 100),
     name='cosita',
     color=(0, 0, 255),
-    max_health=1000
+    max_health=1000,
+    resource_gen_s=15,
 )
 a2 = Aircraft(
     onwer=play2,
@@ -55,6 +60,8 @@ a2 = Aircraft(
     color=pygame.Color(200, 0, 100),
     max_health=1000
 )
+uni.add_planet(p1)
+uni.add_planet(p2)
 
 while True:
     clock.tick(fps)
@@ -63,6 +70,9 @@ while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             exit()
+
+        if event.type >= CustomEvent.UNIVERSE_EVENT.value and event.type <= CustomEvent.UNIVERSE_EVENT_F.value:
+            uni.update(event.type)
 
     p1.draw(screen)
     a1.draw(screen)

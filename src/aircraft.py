@@ -4,8 +4,8 @@ import pygame
 # internals
 from .player import Player
 from .planet import Planet
-from . import basic_forms
 from .gui.health_bar import HealthBar
+from . import basic_forms
 
 
 class Aircraft():
@@ -19,6 +19,7 @@ class Aircraft():
     color = (0, 0, 180)
     max_health = 10
     health = 10
+    swarm = 1
 
     show_life_bar = True
     life_bar = None
@@ -32,7 +33,8 @@ class Aircraft():
         color,
         max_health,
         health=-1,
-        size=-1
+        size=-1,
+        swarm=1,
     ):
         # type checking
         if not isinstance(onwer, Player):
@@ -53,6 +55,7 @@ class Aircraft():
         self.onwer = onwer
         self.name = name
         self.color = color
+        self.swarm = swarm
         self.life_bar = HealthBar()
 
         # setting conditional variables
