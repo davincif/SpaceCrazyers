@@ -5,7 +5,7 @@ import pygame
 from .player import Player
 from .planet import Planet
 from .basic_forms.triangle import Triangle
-from .gui.health_bar import HealthBar
+from .gui.load_bar import LoadBar
 
 
 class Aircraft(Triangle):
@@ -51,7 +51,7 @@ class Aircraft(Triangle):
         self.name = name
         self.color = color
         self.swarm = swarm
-        self.life_bar = HealthBar()
+        self.life_bar = LoadBar(self.pos)
 
         # setting conditional variable
         if health == -1:
@@ -62,4 +62,4 @@ class Aircraft(Triangle):
         super().draw(screen)
 
         if self.show_life_bar:
-            self.life_bar.draw(screen, self.pos, self.health, self.max_health)
+            self.life_bar.draw(screen, self.health / self.max_health)
