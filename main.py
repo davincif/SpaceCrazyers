@@ -9,6 +9,7 @@ from src.player import Player
 from src.aircraft import Aircraft
 from src.events import CustomEvent
 from src.universe import Universe
+from src.gui.container import Container
 
 config.init()
 clock = pygame.time.Clock()
@@ -26,7 +27,7 @@ play1 = Player(
 p1 = Planet(
     onwer=play1,
     pos=(100, 100),
-    name='xablau',
+    name='Лисс',
     color=(255, 0, 0),
     max_health=1000,
     resource_gen_s=15,
@@ -36,7 +37,7 @@ a1 = Aircraft(
     planet=p1,
     pos=(612, 412),
     name='mob1',
-    color=pygame.Color(0, 150, 150),
+    color=(0, 150, 150),
     max_health=1000
 )
 
@@ -47,7 +48,7 @@ play2 = Player(
 p2 = Planet(
     onwer=play2,
     pos=(850, 100),
-    name='cosita',
+    name='Luz',
     color=(0, 0, 255),
     max_health=1000,
     resource_gen_s=15,
@@ -57,7 +58,7 @@ a2 = Aircraft(
     planet=p2,
     pos=(702, 602),
     name='asd',
-    color=pygame.Color(200, 0, 100),
+    color=(200, 0, 100),
     max_health=1000
 )
 uni.add_planet(p1)

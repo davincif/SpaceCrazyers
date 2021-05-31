@@ -35,6 +35,7 @@ class Universe():
             if(plan.is_click(pos)):
                 clicked = plan
                 clicked.click()
+                print(plan.name)
                 break
 
         return clicked
