@@ -12,7 +12,7 @@ class Container(Square):
     aling = AlignProp.UP_LEFT
     justify = JustifyProp.START
     gorth_direction = GrowthDirectionProp.HORIZONTAL
-    show_background = False
+    show_background = None
     children = []
 
     def __init__(
@@ -55,4 +55,5 @@ class Container(Square):
 
     # public methods
     def add_child(self, child):
-        pass
+        child.parent = self
+        self.children.append(child)

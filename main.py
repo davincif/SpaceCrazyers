@@ -18,8 +18,9 @@ bgc = config.confs['background_color']
 
 # test
 uni = Universe()
-cont = Container((100, 100), (100, 300))
-cont.add_child(Label((0, 0), text='xablau'))
+cont = Container(pos=(100, 100), dimension=(100, 300))
+cont.add_child(Label(pos=(0, 0), text='xablau'))
+cont.show_background = True
 
 # main loop
 run = True

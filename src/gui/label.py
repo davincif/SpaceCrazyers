@@ -20,7 +20,7 @@ class Label(Container):
         self,
         pos,
         dimension=(0, 0),
-        color=Colors.WHITE.value,
+        color=Colors.RED.value,
         parent=None,
         show_background=False,
         text='',
@@ -39,12 +39,12 @@ class Label(Container):
         if text:
             self.text = text
         if font_family is not None:
-            self.font_family = font_family
+            self._font_family = font_family
         if font_size is not None:
             self.font_size = font_size
 
     # getts and setters
-    def _set_font(self, value: str):
+    def _set_font(self):
         self._font = pygame.font.SysFont(
             self._font_family,
             self._font_size,
@@ -59,6 +59,7 @@ class Label(Container):
     @text.setter
     def text(self, value: str):
         self._text = value
+        self._set_font()
 
     @property
     def font_family(self):
@@ -67,11 +68,13 @@ class Label(Container):
     @font_family.setter
     def font_family(self, value: str):
         self._font_family = value
+        self._set_font()
 
     # inherited
 
     def how_to_draw_me(self, screen):
-        super().how_to_draw_me(screen)
+        if self.parent is None:
+            super().how_to_draw_me(screen)
 
         text = self._font.render(self._text, True, self.color)
         screen.blit(text, self.pos)
