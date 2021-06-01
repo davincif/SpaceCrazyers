@@ -6,30 +6,29 @@ from src.colors import Colors
 from src.node import Node
 
 
-class Circle(Node):
-    radius = 0
+class Square(Node):
     color = Colors.WHITE.value
+    dimension = pygame.Vector2(15, 15)
 
-    def __init__(self, pos, radius, color):
+    def __init__(self, pos, dimension, color):
         Node.__init__(self, pos=pos)
 
-        # setting ordinary variables
-        self.radius = radius
-
         # setting conditional variables
+        self.set_dimension(dimension)
         self.set_color(color)
 
     # getts and setters
+    def set_dimension(self, value: tuple or list):
+        if not isinstance(value, pygame.Vector2):
+            self.dimension = pygame.Vector2(value[0], value[1])
+
     def set_color(self, value: tuple or list):
         if not isinstance(value, pygame.Color):
             self.color = pygame.Color(*value)
 
     # inherited
-    def is_click(self, pos):
-        if(self.pos.distance_to(pos) <= self.radius):
-            return True
-        else:
-            return False
-
     def how_to_draw_me(self, screen):
-        pygame.draw.circle(screen, self.color, self.pos, self.radius)
+        pygame.draw.rect(screen, self.color, (*self.pos, *self.dimension))
+
+    def is_click(self, pos):
+        return pygame.Rect.collidepoint(pos)

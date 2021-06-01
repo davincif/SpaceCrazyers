@@ -25,11 +25,7 @@ def init(fileAdd: str = ''):
         confs = yaml.load(file, Loader=yaml.FullLoader)
 
     # treat entries
-    confs['background_color'] = pygame.Color(
-        confs['background_color'][0],
-        confs['background_color'][1],
-        confs['background_color'][2]
-    )
+    confs['background_color'] = pygame.Color(*confs['background_color'])
     confs['fps'] = int(confs['fps'])
     confs['resolution'] = (
         video_info.current_w if confs['resolution'][0] == 'max' else int(confs['resolution'][0]),

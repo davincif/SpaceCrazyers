@@ -2,18 +2,57 @@
 import pygame
 
 # internals
-from src.node import Node
+from .props import AlignProp, JustifyProp, GrowthDirectionProp
+from src.colors import Colors
+from src.basic_forms.square import Square
 
 
-class Container(Node):
-    size = (30, 10)
-    background_color = pygame.Color(0, 0, 0)
+class Container(Square):
+    parent = None
+    aling = AlignProp.UP_LEFT
+    justify = JustifyProp.START
+    gorth_direction = GrowthDirectionProp.HORIZONTAL
+    show_background = False
+    children = []
 
-    def __init__(self, pos, size, background_color=None):
-        Node.__init__(self, pos=pos)
+    def __init__(
+        self,
+        pos,
+        dimension,
+        color=Colors.WHITE.value,
+        parent=None,
+        aling=None,
+        justify=None,
+        gorth_direction=None,
+        show_background=False,
+    ):
+        Square.__init__(self, pos=pos, dimension=dimension, color=color)
 
-        # setting conditional variables
-        if not isinstance(size, pygame.Vector2):
-            self.size = pygame.Vector2(size[0], size[1])
-        if background_color is not None and not isinstance(background_color, pygame.Color):
-            self.background_color = background_color
+        self.parent = parent
+        self.set_aling(aling)
+        self.set_justify(justify)
+        self.show_background = show_background
+
+    # getts and setters
+    def set_aling(self, value: AlignProp):
+        if isinstance(value, AlignProp):
+            self.aling = value
+
+    def set_justify(self, value: JustifyProp):
+        if isinstance(value, JustifyProp):
+            self.justify = value
+
+    def set_gorth_direction(self, value: gorth_direction):
+        if isinstance(value, gorth_direction):
+            self.gorth_direction = value
+
+    # inherited
+    def how_to_draw_me(self, screen):
+        if(self.show_background):
+            super().how_to_draw_me(screen)
+        for child in self.children:
+            child.how_to_draw_me(screen)
+
+    # public methods
+    def add_child(self, child):
+        pass

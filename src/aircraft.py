@@ -62,6 +62,5 @@ class Aircraft(Triangle):
         self.life_bar.how_to_draw_me(screen, self.health / self.max_health)
 
     def set_is_visible(self, value: bool):
-        print('set_is_visible', value)
         super().set_is_visible(value)
         self.life_bar.set_is_visible(value)

@@ -5,13 +5,14 @@ import math
 import pygame
 
 # internals
+from src.colors import Colors
 from src.node import Node
 
 
 class Triangle(Node):
     triangle = ()
     size = 0
-    color = (255, 255, 255)
+    color = Colors.WHITE.value
 
     def __init__(self, pos, size, color):
         # setting ordinary variables
@@ -21,16 +22,18 @@ class Triangle(Node):
         Node.__init__(self, pos=pos)
 
         # setting conditional variables
-        if not isinstance(color, pygame.Color):
-            self.color = pygame.Color(color[0], color[1], color[2])
-        else:
-            self.color = color
+        self.set_color(color)
 
     # getts and setters
+    def set_color(self, value: tuple or list):
+        if not isinstance(value, pygame.Color):
+            self.color = pygame.Color(*value)
+
     def set_pos_callback(self, value: tuple or list):
         self.__calc_triangle(value)
         return True
 
+    # inherited
     def is_click(self, pos):
         return False
 
