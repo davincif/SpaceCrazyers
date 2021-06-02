@@ -32,4 +32,4 @@ class Circle(Node):
             return False
 
     def how_to_draw_me(self, screen):
-        pygame.draw.circle(screen, self.color, self.pos, self.radius)
+        pygame.draw.circle(screen, self.color, self.relative_pos, self.radius)

@@ -23,12 +23,19 @@ class Square(Node):
             self.dimension = pygame.Vector2(value[0], value[1])
 
     def set_color(self, value: tuple or list):
-        if not isinstance(value, pygame.Color):
+        if isinstance(value, pygame.Color):
             self.color = pygame.Color(*value)
+
+    def set_dimetion(self, value: tuple or list or pygame.Vector2):
+        if isinstance(value, pygame.Vector2):
+            self.dimension = value
+        else:
+            self.dimension.x = value[0]
+            self.dimension.y = value[0]
 
     # inherited
     def how_to_draw_me(self, screen):
-        pygame.draw.rect(screen, self.color, (*self.pos, *self.dimension))
+        pygame.draw.rect(screen, self.color, (*self.relative_pos, *self.dimension))
 
     def is_click(self, pos):
         return pygame.Rect.collidepoint(pos)

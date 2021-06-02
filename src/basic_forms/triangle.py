@@ -43,7 +43,7 @@ class Triangle(Node):
     # private methods
     def __calc_triangle(self, newpos=None):
         if newpos is None:
-            newpos = self.pos
+            newpos = self.relative_pos
 
         # thirty degrees
         td = math.pi / 6
