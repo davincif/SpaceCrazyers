@@ -12,6 +12,7 @@ class Container(Square):
     justify = JustifyProp.START
     gorth_direction = GrowthDirectionProp.HORIZONTAL
     show_background = None
+    margin = (0, 0, 0, 0)
     children = []
 
     def __init__(
@@ -24,6 +25,7 @@ class Container(Square):
         justify=None,
         gorth_direction=None,
         show_background=False,
+        margin=None,
     ):
         Square.__init__(self, pos=pos, dimension=dimension, color=color)
         self.show_background = show_background
@@ -31,6 +33,9 @@ class Container(Square):
         self.set_parent(parent)
         self.set_aling(aling)
         self.set_justify(justify)
+
+        if margin is not None:
+            self.margin = margin
 
     # getts and setters
     def set_aling(self, value: AlignProp):
@@ -46,9 +51,15 @@ class Container(Square):
             self.gorth_direction = value
 
     # inherited
-    def how_to_draw_me(self, screen, draw_children=True):
+    def how_to_draw_me(self, screen, draw_children=True, pos_modifier=None):
         if self.show_background:
-            super().how_to_draw_me(screen)
+            modifier = (self.margin[0], self.margin[1])
+            if pos_modifier is not None:
+                modifier[0] += pos_modifier[0]
+                modifier[1] += pos_modifier[1]
+
+            super().how_to_draw_me(screen, modifier)
+
         if draw_children:
             for child in self.children:
                 child.how_to_draw_me(screen)

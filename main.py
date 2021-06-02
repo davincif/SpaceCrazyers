@@ -19,7 +19,7 @@ bgc = config.confs['background_color']
 # test
 uni = Universe()
 cont = Container(pos=(100, 100), dimension=(100, 300))
-cont.add_child(Label(pos=(5, 5), text='xablau'))
+cont.add_child(Label(pos=(0, 0), text='xablau', margin=(10, 10, 0, 0)))
 cont.show_background = True
 
 # main loop

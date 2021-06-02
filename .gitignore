@@ -1,4 +1,10 @@
+# IDE
+.vscode
+
+# python
 .virenv
 **/__pycache__/
 *.pyc
+
+# custom
 trash/

@@ -27,6 +27,7 @@ class Label(Container):
         text='',
         font_family=None,
         font_size=None,
+        margin=None
     ):
         Container.__init__(
             self,
@@ -35,6 +36,7 @@ class Label(Container):
             color=color,
             parent=parent,
             show_background=show_background,
+            margin=margin,
         )
 
         # preate text Label props
@@ -118,4 +120,5 @@ class Label(Container):
         if self.parent is not None:
             super().how_to_draw_me(screen, draw_children=False)
 
-        screen.blit(self._text_rendered, self.relative_pos)
+        draw_in_pos = self.relative_pos + (self.margin[0], self.margin[1])
+        screen.blit(self._text_rendered, draw_in_pos)

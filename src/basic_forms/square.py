@@ -34,8 +34,12 @@ class Square(Node):
             self.dimension.y = value[0]
 
     # inherited
-    def how_to_draw_me(self, screen):
-        pygame.draw.rect(screen, self.color, (*self.relative_pos, *self.dimension))
+    def how_to_draw_me(self, screen, pos_modifier=None):
+        mod_pos = self.relative_pos
+        if pos_modifier is not None:
+            mod_pos += pos_modifier
+
+        pygame.draw.rect(screen, self.color, (*mod_pos, *self.dimension))
 
     def is_click(self, pos):
         return pygame.Rect.collidepoint(pos)
